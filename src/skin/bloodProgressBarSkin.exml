@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing" width="298" height="21">
+	<w:HostComponent name="egret.gui.ProgressBar"/>
+	<w:Declarations/>
+	<e:states>
+<e:State name="normal"/>
+<e:State name="disabled"/>
+</e:states>
+	<e:UIAsset id="track" source="yl0_png" scale9Grid="11,11,567,7" left="0" right="0" top="0" bottom="0" height="100%"/>
+	<e:Group id="thumb" height="100%" width="269">
+	<e:UIAsset source="yl02_png"  scale9Grid="7,5,552,6" left="1" width="100%" bottom="5" top="5" verticalCenter="0" right="3"/>
+	</e:Group>
+</e:Skin>

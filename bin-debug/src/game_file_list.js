@@ -1,0 +1,20 @@
+var game_file_list = [
+	"game/Airplane.js",
+	"game/fighter/MyFighter.js",
+	"game/fighter/NormalEnemyFighter.js",
+	"game/Airport.js",
+	"game/BgMap.js",
+	"game/Bullet.js",
+	"physical/GameUtil.js",
+	"skin/IconButtonSkin.js",
+	"skin/PlayButtonSkin.js",
+	"skin/SettingButtonSkin.js",
+	"level/Number.js",
+	"skin/StartScreenSkin.js",
+	"skin/bloodProgressBarSkin.js",
+	"AssetAdapter.js",
+	"LoadingUI.js",
+	"game/GameContainer.js",
+	"panel/StartScreen.js",
+	"Main.js"
+];
