@@ -25,4 +25,3 @@ var physical;
     physical.GameUtil = GameUtil;
     GameUtil.prototype.__class__ = "physical.GameUtil";
 })(physical || (physical = {}));
-//# sourceMappingURL=GameUtil.js.map

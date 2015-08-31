@@ -17,9 +17,11 @@ module game {
 		
         private level: egret.DisplayObjectContainer;
         private bloodBar: egret.gui.ProgressBar;
-        
+        private curtain: egret.Shape;
         
 		private createGameScene():void{
+    		//放幕布
+    		
             //加血条
             this.bloodBar = new egret.gui.ProgressBar;
             this.bloodBar.skinName = skin.bloodProgressBarSkin;

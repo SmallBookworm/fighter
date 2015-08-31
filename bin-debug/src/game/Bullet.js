@@ -39,4 +39,3 @@ var game;
     game.Bullet = Bullet;
     Bullet.prototype.__class__ = "game.Bullet";
 })(game || (game = {}));
-//# sourceMappingURL=Bullet.js.map

@@ -21,4 +21,3 @@ var panel;
     panel.StartScreen = StartScreen;
     StartScreen.prototype.__class__ = "panel.StartScreen";
 })(panel || (panel = {}));
-//# sourceMappingURL=StartScreen.js.map

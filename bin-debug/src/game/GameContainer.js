@@ -17,6 +17,7 @@ var game;
             this.createGameScene();
         };
         __egretProto__.createGameScene = function () {
+            //放幕布
             //加血条
             this.bloodBar = new egret.gui.ProgressBar;
             this.bloodBar.skinName = skin.bloodProgressBarSkin;
@@ -42,4 +43,3 @@ var game;
     game.GameContainer = GameContainer;
     GameContainer.prototype.__class__ = "game.GameContainer";
 })(game || (game = {}));
-//# sourceMappingURL=GameContainer.js.map

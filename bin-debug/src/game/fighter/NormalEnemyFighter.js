@@ -56,4 +56,3 @@ var game;
         NormalEnemyFighter.prototype.__class__ = "game.fighter.NormalEnemyFighter";
     })(fighter = game.fighter || (game.fighter = {}));
 })(game || (game = {}));
-//# sourceMappingURL=NormalEnemyFighter.js.map

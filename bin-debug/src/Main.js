@@ -121,10 +121,10 @@ var Main = (function (_super) {
     __egretProto__.restart = function () {
         this.gameContainer.removeEventListener("gameStop", this.restart, this);
         this.addChild(this.guiLayer);
+        this.gameContainer = new game.GameContainer();
         this.guiLayer.addElement(this.startScreen);
         this.startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
     };
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";
-//# sourceMappingURL=Main.js.map

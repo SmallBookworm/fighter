@@ -26,4 +26,3 @@ var skin;
     skin.SettingButtonSkin = SettingButtonSkin;
     SettingButtonSkin.prototype.__class__ = "skin.SettingButtonSkin";
 })(skin || (skin = {}));
-//# sourceMappingURL=SettingButtonSkin.js.map

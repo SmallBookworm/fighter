@@ -54,4 +54,3 @@ var skin;
     skin.StartScreenSkin = StartScreenSkin;
     StartScreenSkin.prototype.__class__ = "skin.StartScreenSkin";
 })(skin || (skin = {}));
-//# sourceMappingURL=StartScreenSkin.js.map
