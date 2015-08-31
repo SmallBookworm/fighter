@@ -26,9 +26,16 @@ var game;
             this.level = new level.Number();
             this.addChildAt(this.level, 0);
             this.level.addEventListener("bloodBarChange", this.bloodBarChange, this);
+            this.level.addEventListener("gameStop", this.gameStop, this);
         };
         __egretProto__.bloodBarChange = function (event) {
             this.bloodBar.value = event.data;
+        };
+        __egretProto__.gameStop = function () {
+            this.level.removeEventListener("bloodBarChange", this.bloodBarChange, this);
+            this.level.removeEventListener("gameStop", this.gameStop, this);
+            this.removeChildren();
+            this.dispatchEventWith("gameStop");
         };
         return GameContainer;
     })(egret.DisplayObjectContainer);

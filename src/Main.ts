@@ -107,9 +107,9 @@ class Main extends egret.DisplayObjectContainer {
         }
     }
 
-    
+    private startScreen: panel.StartScreen; 
     private guiLayer:egret.gui.UIStage;
-    
+    private gameContainer: game.GameContainer; 
     /**
     * 创建场景界面
     * Create scene interface
@@ -120,22 +120,29 @@ class Main extends egret.DisplayObjectContainer {
         //GUI components must be within the container, UIStage will always remain the same as stage size automatically.
         this.guiLayer = new egret.gui.UIStage();
         this.addChild(this.guiLayer);
-        
-        var startScreen:panel.StartScreen = new panel.StartScreen();
+        this.gameContainer= new game.GameContainer();
+        this.startScreen = new panel.StartScreen();
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
-        this.guiLayer.addElement(startScreen);
+        this.guiLayer.addElement(this.startScreen);
         //监听按键
-        startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP,this.startGame,this);
+        this.startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP,this.startGame,this);
+        egret.Profiler.getInstance().run();
     }
     //开始游戏
-    private startGame(event:egret.Event):void{
+    private startGame():void{
+        this.startScreen.playButton.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.startGame,this);
         this.removeChildren();
-        var gameContainer: game.GameContainer = new game.GameContainer();
-        this.addChild(gameContainer);
-        egret.Profiler.getInstance().run();
-        gameContainer.addEventListener("gameStop",this.createScene,this);
+        this.addChild(this.gameContainer);
+        this.gameContainer.addEventListener("gameStop",this.restart,this);
     }
+    private restart():void{
+        this.gameContainer.removeEventListener("gameStop",this.restart,this);
+        this.addChild(this.guiLayer);
+        this.guiLayer.addElement(this.startScreen);
+        this.startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP,this.startGame,this);
+    }
+    
 
 }
 

@@ -29,9 +29,18 @@ module game {
             this.level = new level.Number();
             this.addChildAt(this.level,0);
             this.level.addEventListener("bloodBarChange",this.bloodBarChange,this);
+            this.level.addEventListener("gameStop",this.gameStop,this);
 		}
+		
 		private bloodBarChange(event:egret.Event):void{
             this.bloodBar.value = event.data;
+		}
+		
+		private gameStop():void{
+            this.level.removeEventListener("bloodBarChange",this.bloodBarChange,this);
+            this.level.removeEventListener("gameStop",this.gameStop,this);
+            this.removeChildren();
+            this.dispatchEventWith("gameStop");
 		}
 	}
 }

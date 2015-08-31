@@ -162,6 +162,7 @@ module level {
                             this.removeEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
                             this.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
                             this.myFighter.stopFire();
+                            this.removeChild(this.bg);
                             this.removeChild(this.myFighter);
                             game.Airport.reclaim(this.myFighter);
                             this.enemyFightersTimer.removeEventListener(egret.TimerEvent.TIMER,this.createEnemyFighter,this);
