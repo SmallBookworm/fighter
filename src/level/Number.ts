@@ -4,7 +4,7 @@ module level {
 	 * @author 
 	 *
 	 */
-	export class Number extends egret.DisplayObjectContainer{
+	export class Number extends Level{
         private _lastTime: number;
         public constructor() {
             super();
@@ -14,7 +14,6 @@ module level {
         private onAddToStage(event:egret.Event){
             this.removeEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
             game.Airport.address = this;
-            this.gameStart();
         }
         private myFighter: game.fighter.MyFighter;
         private enemyFighters: game.fighter.NormalEnemyFighter[] = [];
@@ -22,7 +21,7 @@ module level {
         
         private bg: game.BgMap;
         
-        private gameStart():void{
+        public gameStart():void{
             //put the background
             this.bg = new game.BgMap();
             this.addChild(this.bg);
@@ -129,7 +128,7 @@ module level {
                             }
                         }
                         if(this.myFighter.blood <= 0) {
-                            this.gameStop();
+                            this.gameOver();
                             return;
                         }
                         //my bullets
@@ -157,8 +156,9 @@ module level {
                         }
                                     
                         }
-                        private gameStop():void{
-                            this.dispatchEventWith("gameStop");
+                        
+                        private gameOver():void{
+                            this.dispatchEventWith("gameOver");
                             this.removeEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
                             this.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
                             this.myFighter.stopFire();
@@ -167,23 +167,42 @@ module level {
                             game.Airport.reclaim(this.myFighter);
                             this.enemyFightersTimer.removeEventListener(egret.TimerEvent.TIMER,this.createEnemyFighter,this);
                             this.enemyFightersTimer.stop();
+                            var i: number;
                             var bullet: game.Bullet;
-                            while(game.fighter.MyFighter.bullets.length>0){
+                            i = game.fighter.MyFighter.bullets.length;
+                            while(i--){
                                 bullet = game.fighter.MyFighter.bullets.pop();
                                 this.removeChild(bullet);
                                 game.Bullet.reclaim(bullet);
                             }
-                            while(game.fighter.NormalEnemyFighter.bullets.length>0){
+                            i = game.fighter.NormalEnemyFighter.bullets.length;
+                            while(i--){
                                 bullet = game.fighter.NormalEnemyFighter.bullets.pop();
                                 this.removeChild(bullet);
                                 game.Bullet.reclaim(bullet);
                             }
                             var theFighter: game.fighter.NormalEnemyFighter;
-                            while(this.enemyFighters.length>0){
+                            i = this.enemyFighters.length;
+                            while(i--){
                                 theFighter = this.enemyFighters.pop();
                                 theFighter.stopFire();
                                 this.removeChild(theFighter);
                                 game.Airport.reclaim(theFighter);
+                            }
+                        }
+                        
+                        public gamePause(): void {
+                            this.bg.pause();
+                            this.removeEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
+                            this.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
+                            this.myFighter.stopFire();
+                            this.enemyFightersTimer.stop();
+                            var theFighter: game.fighter.NormalEnemyFighter;
+                            var i:number = this.enemyFighters.length;
+                            while(i) {
+                                i--;
+                                theFighter = this.enemyFighters[i];
+                                theFighter.stopFire();
                             }
                         }
 	}

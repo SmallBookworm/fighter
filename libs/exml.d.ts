@@ -1,13 +1,5 @@
 declare module skin{
-	class IconButtonSkin extends egret.gui.Skin{
-	}
-}
-declare module skin{
 	class PlayButtonSkin extends egret.gui.Skin{
-	}
-}
-declare module skin{
-	class SettingButtonSkin extends egret.gui.Skin{
 	}
 }
 declare module skin{

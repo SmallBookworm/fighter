@@ -18,7 +18,6 @@ var level;
         __egretProto__.onAddToStage = function (event) {
             this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
             game.Airport.address = this;
-            this.gameStart();
         };
         __egretProto__.gameStart = function () {
             //put the background
@@ -121,7 +120,7 @@ var level;
                 }
             }
             if (this.myFighter.blood <= 0) {
-                this.gameStop();
+                this.gameOver();
                 return;
             }
             for (i = 0; i < myBulletsCount; i++) {
@@ -147,8 +146,8 @@ var level;
                 }
             }
         };
-        __egretProto__.gameStop = function () {
-            this.dispatchEventWith("gameStop");
+        __egretProto__.gameOver = function () {
+            this.dispatchEventWith("gameOver");
             this.removeEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
             this.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.touchHandler, this);
             this.myFighter.stopFire();
@@ -157,27 +156,46 @@ var level;
             game.Airport.reclaim(this.myFighter);
             this.enemyFightersTimer.removeEventListener(egret.TimerEvent.TIMER, this.createEnemyFighter, this);
             this.enemyFightersTimer.stop();
+            var i;
             var bullet;
-            while (game.fighter.MyFighter.bullets.length > 0) {
+            i = game.fighter.MyFighter.bullets.length;
+            while (i--) {
                 bullet = game.fighter.MyFighter.bullets.pop();
                 this.removeChild(bullet);
                 game.Bullet.reclaim(bullet);
             }
-            while (game.fighter.NormalEnemyFighter.bullets.length > 0) {
+            i = game.fighter.NormalEnemyFighter.bullets.length;
+            while (i--) {
                 bullet = game.fighter.NormalEnemyFighter.bullets.pop();
                 this.removeChild(bullet);
                 game.Bullet.reclaim(bullet);
             }
             var theFighter;
-            while (this.enemyFighters.length > 0) {
+            i = this.enemyFighters.length;
+            while (i--) {
                 theFighter = this.enemyFighters.pop();
                 theFighter.stopFire();
                 this.removeChild(theFighter);
                 game.Airport.reclaim(theFighter);
             }
         };
+        __egretProto__.gamePause = function () {
+            this.bg.pause();
+            this.removeEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
+            this.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.touchHandler, this);
+            this.myFighter.stopFire();
+            this.enemyFightersTimer.stop();
+            var theFighter;
+            var i = this.enemyFighters.length;
+            while (i) {
+                i--;
+                theFighter = this.enemyFighters[i];
+                theFighter.stopFire();
+            }
+        };
         return Number;
-    })(egret.DisplayObjectContainer);
+    })(level.Level);
     level.Number = Number;
     Number.prototype.__class__ = "level.Number";
 })(level || (level = {}));
+//# sourceMappingURL=Number.js.map

@@ -55,3 +55,4 @@ var game;
         MyFighter.prototype.__class__ = "game.fighter.MyFighter";
     })(fighter = game.fighter || (game.fighter = {}));
 })(game || (game = {}));
+//# sourceMappingURL=MyFighter.js.map

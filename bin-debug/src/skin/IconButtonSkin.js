@@ -60,3 +60,4 @@ var skin;
     skin.IconButtonSkin = IconButtonSkin;
     IconButtonSkin.prototype.__class__ = "skin.IconButtonSkin";
 })(skin || (skin = {}));
+//# sourceMappingURL=IconButtonSkin.js.map

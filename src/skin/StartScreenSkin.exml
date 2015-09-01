@@ -7,8 +7,6 @@
 		<e:State name="disabled"/>
 	</e:states>
 	<e:UIAsset source="backtround2_png" left="0" right="0" top="0" bottom="0"/>
-	<e:Button id="levelButton" skinName="skin.IconButtonSkin" width="342" label="Easy" icon="level_easy_png" horizontalCenter="58" y="398"/>
-	<e:Button id="playButton" label="按钮" skinName="skin.PlayButtonSkin" horizontalCenter="-13.5" y="204"/>
-	<e:Button id="settingButton" label="按钮" skinName="skin.SettingButtonSkin" x="19" y="398"/>
+	<e:Button id="playButton" label="按钮" skinName="skin.PlayButtonSkin" horizontalCenter="-19.5" y="502"/>
 	<e:Label text="Powered By Egret Engine" textColor="4860458" fontFamily="Arial" bold="true" horizontalCenter="0" bottom="24"/>
 </e:Skin>

@@ -66,3 +66,4 @@ var game;
     game.Airport = Airport;
     Airport.prototype.__class__ = "game.Airport";
 })(game || (game = {}));
+//# sourceMappingURL=Airport.js.map

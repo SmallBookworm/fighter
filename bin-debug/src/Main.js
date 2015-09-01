@@ -116,10 +116,10 @@ var Main = (function (_super) {
         this.startScreen.playButton.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
         this.removeChildren();
         this.addChild(this.gameContainer);
-        this.gameContainer.addEventListener("gameStop", this.restart, this);
+        this.gameContainer.addEventListener("gameOver", this.restart, this);
     };
     __egretProto__.restart = function () {
-        this.gameContainer.removeEventListener("gameStop", this.restart, this);
+        this.gameContainer.removeEventListener("gameOver", this.restart, this);
         this.addChild(this.guiLayer);
         this.gameContainer = new game.GameContainer();
         this.guiLayer.addElement(this.startScreen);
@@ -128,3 +128,4 @@ var Main = (function (_super) {
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";
+//# sourceMappingURL=Main.js.map

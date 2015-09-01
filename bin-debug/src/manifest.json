@@ -1,5 +1,6 @@
 [
 	"game/Airplane.ts",
+	"level/Interface.ts",
 	"game/fighter/Fighter.ts",
 	"game/fighter/MyFighter.ts",
 	"game/fighter/NormalEnemyFighter.ts",
@@ -7,9 +8,7 @@
 	"game/BgMap.ts",
 	"game/Bullet.ts",
 	"physical/GameUtil.ts",
-	"skin/IconButtonSkin.exml",
 	"skin/PlayButtonSkin.exml",
-	"skin/SettingButtonSkin.exml",
 	"level/Number.ts",
 	"skin/StartScreenSkin.exml",
 	"skin/bloodProgressBarSkin.exml",

@@ -55,3 +55,4 @@ var game;
     game.BgMap = BgMap;
     BgMap.prototype.__class__ = "game.BgMap";
 })(game || (game = {}));
+//# sourceMappingURL=BgMap.js.map

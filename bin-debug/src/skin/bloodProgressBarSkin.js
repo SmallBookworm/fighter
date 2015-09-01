@@ -44,3 +44,4 @@ var skin;
     skin.bloodProgressBarSkin = bloodProgressBarSkin;
     bloodProgressBarSkin.prototype.__class__ = "skin.bloodProgressBarSkin";
 })(skin || (skin = {}));
+//# sourceMappingURL=bloodProgressBarSkin.js.map
