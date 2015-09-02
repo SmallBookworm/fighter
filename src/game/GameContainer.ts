@@ -36,7 +36,7 @@ module game {
             this.levelText.stroke = 3;
             this.levelText.size = 40;
             this.levelText.y = this.stage.stageHeight / 3-30;
-            this.levelText.x = -210;
+            this.levelText.x = -280;
             this.addChild(this.levelText);
             this.levelName = new egret.TextField();
             this.levelName.text = "无尽的时间";
@@ -45,7 +45,7 @@ module game {
             this.levelName.stroke = 3;
             this.levelName.size = 40;
             this.levelName.y = this.stage.stageHeight / 3+10;
-            this.levelName.x = -210;
+            this.levelName.x = -280;
             this.addChild(this.levelName);
             this.icon = new egret.Bitmap(RES.getRes("level"));
             this.icon.scaleX = 0.7;

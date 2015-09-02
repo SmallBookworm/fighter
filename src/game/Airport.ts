@@ -7,8 +7,6 @@ module game {
 	export class Airport {
         public static address: egret.DisplayObjectContainer;
         public static speed: number=1;
-		public constructor() {
-		}
         //对象池
         private static cacheDict: Object = {
             "Airplane": new Array<Airplane>(),
@@ -46,7 +44,7 @@ module game {
                 if(dict.length>0){
                     theFighter = dict.pop();
                 }else{
-                    theFighter = new fighter.MyFighter(RES.getRes("f1"),fireDelay);    
+                    theFighter = new fighter.MyFighter(RES.getRes("f3"),fireDelay);    
                         }
                     theFighter.blood=10;//回血
                     return theFighter;

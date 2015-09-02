@@ -25,7 +25,7 @@ var game;
             __egretProto__.createBullet = function (event) {
                 var theBullet = game.Bullet.produce("b1");
                 theBullet.x = this.x + this.width / 2;
-                theBullet.y = this.y + this.height;
+                theBullet.y = this.y - 25;
                 game.Airport.address.addChild(theBullet);
                 MyFighter.bullets.push(theBullet);
             };
@@ -55,4 +55,3 @@ var game;
         MyFighter.prototype.__class__ = "game.fighter.MyFighter";
     })(fighter = game.fighter || (game.fighter = {}));
 })(game || (game = {}));
-//# sourceMappingURL=MyFighter.js.map

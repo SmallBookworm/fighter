@@ -198,4 +198,3 @@ var level;
     level.Number = Number;
     Number.prototype.__class__ = "level.Number";
 })(level || (level = {}));
-//# sourceMappingURL=Number.js.map

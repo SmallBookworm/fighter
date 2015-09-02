@@ -29,7 +29,7 @@ module game.fighter {
     	private createBullet(event:egret.TimerEvent):void{
         	var theBullet: Bullet = Bullet.produce("b1");
         	theBullet.x = this.x + this.width / 2;
-        	theBullet.y = this.y + this.height;
+        	theBullet.y = this.y-25;
         	Airport.address.addChild(theBullet);
             MyFighter.bullets.push(theBullet);
     	}

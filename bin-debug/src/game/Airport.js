@@ -41,7 +41,7 @@ var game;
                 theFighter = dict.pop();
             }
             else {
-                theFighter = new game.fighter.MyFighter(RES.getRes("f1"), fireDelay);
+                theFighter = new game.fighter.MyFighter(RES.getRes("f3"), fireDelay);
             }
             theFighter.blood = 10; //回血
             return theFighter;
@@ -66,4 +66,3 @@ var game;
     game.Airport = Airport;
     Airport.prototype.__class__ = "game.Airport";
 })(game || (game = {}));
-//# sourceMappingURL=Airport.js.map
