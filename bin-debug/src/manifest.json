@@ -7,6 +7,7 @@
 	"game/Airport.ts",
 	"game/BgMap.ts",
 	"game/Bullet.ts",
+	"physical/ChangeBitmapOutline.ts",
 	"physical/GameUtil.ts",
 	"skin/PlayButtonSkin.exml",
 	"level/Number.ts",

@@ -6,6 +6,7 @@ var game_file_list = [
 	"game/Airport.js",
 	"game/BgMap.js",
 	"game/Bullet.js",
+	"physical/ChangeBitmapOutline.js",
 	"physical/GameUtil.js",
 	"skin/PlayButtonSkin.js",
 	"level/Number.js",

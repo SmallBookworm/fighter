@@ -58,6 +58,8 @@ var game;
             this.addChildAt(this.level, 0);
             this.level.addEventListener("bloodBarChange", this.bloodBarChange, this);
             this.level.addEventListener("gameOver", this.gameOver, this);
+            //full bitmapskeleton
+            physical.GetBitmapSkeleton.init();
             //touch to start 
             this.touchEnabled = true;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.touch, this);

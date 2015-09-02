@@ -111,20 +111,24 @@ module level {
                         for(i = 0;i < enemyBulletsCount;i++){
                             bullet = enemyBullets[i];
                             if(physical.GameUtil.hitTest(this.myFighter,bullet)){
-                                this.myFighter.blood -= 1;
-                                this.removeChild(bullet);
-                                game.Bullet.reclaim(bullet);
-                                enemyBullets.splice(i,1);
-                                i--;
-                                enemyBulletsCount--;
+                                if(physical.GetBitmapSkeleton.hitTest(this.myFighter,"f3",bullet,"b2")) {
+                                    this.myFighter.blood -= 1;
+                                    this.removeChild(bullet);
+                                    game.Bullet.reclaim(bullet);
+                                    enemyBullets.splice(i,1);
+                                    i--;
+                                    enemyBulletsCount--;
+                                }
                             }
                         }
                         //撞机直接结束
                         for(i = 0;i < enemyFightersCount;i++){
                             theFighter = this.enemyFighters[i];
                             if(physical.GameUtil.hitTest(this.myFighter,theFighter)){
-                                this.myFighter.blood -= 10;
-                                break;
+                                if(physical.GetBitmapSkeleton.hitTest(this.myFighter,"f3",theFighter,"f2")) {
+                                    this.myFighter.blood -= 10;
+                                    break;
+                                }
                             }
                         }
                         if(this.myFighter.blood <= 0) {
@@ -137,20 +141,22 @@ module level {
                             for(j = 0;j < enemyFightersCount;j++){
                                 theFighter = this.enemyFighters[j];
                                 if(physical.GameUtil.hitTest(theFighter,bullet)) {
-                                    theFighter.blood -= 2;
-                                    this.removeChild(bullet);
-                                    game.Bullet.reclaim(bullet);
-                                    myBullets.splice(i,1);
-                                    i--;
-                                    myBulletsCount--;
-                                    if(theFighter.blood<=0){
-                                        theFighter.stopFire();
-                                        this.removeChild(theFighter);
-                                        game.Airport.reclaim(theFighter);
-                                        this.enemyFighters.splice(j,1);   
-                                        enemyFightersCount--;
+                                    if(physical.GetBitmapSkeleton.hitTest(theFighter,"f2",bullet,"b1")) {
+                                        theFighter.blood -= 2;
+                                        this.removeChild(bullet);
+                                        game.Bullet.reclaim(bullet);
+                                        myBullets.splice(i,1);
+                                        i--;
+                                        myBulletsCount--;
+                                        if(theFighter.blood <= 0) {
+                                            theFighter.stopFire();
+                                            this.removeChild(theFighter);
+                                            game.Airport.reclaim(theFighter);
+                                            this.enemyFighters.splice(j,1);
+                                            enemyFightersCount--;
+                                        }
+                                        break;
                                     }
-                                    break;    
                                 }
                             }
                         }
