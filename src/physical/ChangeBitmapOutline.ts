@@ -11,7 +11,6 @@ module physical {
             GetBitmapSkeleton.bitmapSkeleton["f2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f2")));
             GetBitmapSkeleton.bitmapSkeleton["f3"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f3")));
             GetBitmapSkeleton.bitmapSkeleton["b1"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b1")));
-            console.log("一");
             GetBitmapSkeleton.bitmapSkeleton["b2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b2")));
         }
         
@@ -27,31 +26,32 @@ module physical {
         public static realTest(obj1: egret.DisplayObject,obj2: egret.DisplayObject,bs1: Array<any>,bs2: Array<any>): Boolean {
             var fs = (obj1.y + obj1.height - obj2.y) / 10;//obj2头和obj1尾在y轴上的距离差
             var l = Math.ceil(fs);
+            var count = l;
             var h1 = bs1.length;
             var h2 = bs2.length;
             var bs2x1;
             var bs2x2;
             var bs1x1;
             var bs1x2;
-            //一般情况，如头对头
-            if(l < h2) {
+            //一般情况，如头对头l；若obj2长度小于l选h2
+            if(l > h2)
+                count = h2;  
                 //不偶合
                 if(l > fs) {
-                    console.log("一般情况");
-                    bs1x1 = bs1[h1 - l]["x1"];
-                    bs1x2 = bs1[h1 - l]["x2"];
-                    for(var i = 0;i < l;i++) {
-                        bs2x1 = bs2[i]["x1"];
-                        bs2x2 = bs2[i]["x2"];
+                    bs1x1 = bs1[h1 - l]["x1"] + obj1.x;
+                    bs1x2 = bs1[h1 - l]["x2"] + obj1.x;
+                    for(var i = 0;i < count;i++) {
+                        bs2x1 = bs2[i]["x1"] + obj2.x;
+                        bs2x2 = bs2[i]["x2"] + obj2.x;
                        //忽略包含关系
                         if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
                             return true;
 
-                        if(i == l-1)
+                        if(i == count-1)
                             return false;
 
-                        bs1x1 = bs1[h1 - l + i + 1]["x1"];
-                        bs1x2 = bs1[h1 - l + i + 1]["x2"];
+                        bs1x1 = bs1[h1 - l + i + 1]["x1"] + obj1.x;
+                        bs1x2 = bs1[h1 - l + i + 1]["x2"] + obj1.x;
 
                         if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
                             return true;
@@ -59,51 +59,15 @@ module physical {
                     }
                 } else {
                     //正好骨头y坐标对上
-                    for(var i = 0;i < l;i++) {
-                        bs2x1 = bs2[i]["x1"];
-                        bs2x2 = bs2[i]["x2"];
-                        bs1x1 = bs1[h1 - l + i]["x1"];
-                        bs1x2 = bs1[h1 - l + i]["x2"];
+                    for(var i = 0;i < count;i++) {
+                        bs2x1 = bs2[i]["x1"] + obj2.x;
+                        bs2x2 = bs2[i]["x2"] + obj2.x;
+                        bs1x1 = bs1[h1 - l + i]["x1"] + obj1.x;
+                        bs1x2 = bs1[h1 - l + i]["x2"] + obj1.x;
                         if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
                             return true;
                     }
                 }
-            } else {
-                //obj2在obj1侧面，而且obj2长度小于l
-                console.log("情况");
-                //不偶合
-                if(l > fs) {
-                    bs1x1 = bs1[h1 - l]["x1"];
-                    bs1x2 = bs1[h1 - l]["x2"];
-                    for(var i = 0;i < h2;i++) {
-                        bs2x1 = bs2[i]["x1"];
-                        bs2x2 = bs2[i]["x2"];
-
-                        if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
-                            return true;
-
-                        if(i == h2 - 1)
-                            return false;
-
-                        bs1x1 = bs1[h1 - l + i + 1]["x1"];
-                        bs1x2 = bs1[h1 - l + i + 1]["x2"];
-
-                        if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
-                            return true;
-
-                    }
-                } else {
-                    //正好骨头y坐标对上
-                    for(var i = 0;i < h2;i++) {
-                        bs2x1 = bs2[i]["x1"];
-                        bs2x2 = bs2[i]["x2"];
-                        bs1x1 = bs1[h1 - l + i]["x1"];
-                        bs1x2 = bs1[h1 - l + i]["x2"];
-                        if((bs2x1 >= bs1x1 && bs2x1 <= bs1x2) || (bs2x2 >= bs1x1 && bs2x2 <= bs1x2))
-                            return true;
-                    }
-                }
-            }
             return false;
 
         }
@@ -121,7 +85,7 @@ module physical {
                 data[i] = [];
                 x = bmp.x;
                 while(1){
-                    if(bmp.hitTestPoint(x,y,true)){console.log("1");
+                    if(bmp.hitTestPoint(x,y,true)){
                         data[i]["x1"] = x;
                         break;
                     }                 
@@ -129,7 +93,7 @@ module physical {
                 }
                 while(2){
                     x++;
-                    if(!bmp.hitTestPoint(x,y,true)){console.log("2");
+                    if(!bmp.hitTestPoint(x,y,true)){
                         data[i]["x2"] = x-1;
                         break;
                     }
