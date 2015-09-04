@@ -44,6 +44,7 @@ var game;
                 theFighter = new game.fighter.MyFighter(RES.getRes("f3"), fireDelay);
             }
             theFighter.blood = 10; //回血
+            theFighter.fillBullet(100);
             return theFighter;
         };
         Airport.reclaim = function (theFighter) {
@@ -66,3 +67,4 @@ var game;
     game.Airport = Airport;
     Airport.prototype.__class__ = "game.Airport";
 })(game || (game = {}));
+//# sourceMappingURL=Airport.js.map

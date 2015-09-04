@@ -28,12 +28,12 @@ var skin;
         __egretProto__.playButton_i = function () {
             var t = new egret.gui.Button();
             this.playButton = t;
-            this.__s(t, ["horizontalCenter", "label", "skinName", "y"], [-19.5, "按钮", skin.PlayButtonSkin, 502]);
+            this.__s(t, ["horizontalCenter", "label", "skinName", "y"], [-86.5, "按钮", skin.PlayButtonSkin, 541]);
             return t;
         };
         __egretProto__.__3_i = function () {
             var t = new egret.gui.UIAsset();
-            this.__s(t, ["bottom", "left", "right", "source", "top"], [0, 0, 0, "backtround2_png", 0]);
+            this.__s(t, ["bottom", "left", "right", "source", "top"], [0, 0, 0, "background2_png", 0]);
             return t;
         };
         StartScreenSkin._skinParts = ["playButton"];
@@ -42,3 +42,4 @@ var skin;
     skin.StartScreenSkin = StartScreenSkin;
     StartScreenSkin.prototype.__class__ = "skin.StartScreenSkin";
 })(skin || (skin = {}));
+//# sourceMappingURL=StartScreenSkin.js.map

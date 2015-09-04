@@ -9,12 +9,13 @@ var physical;
         function GetBitmapSkeleton() {
         }
         var __egretProto__ = GetBitmapSkeleton.prototype;
-        //full bitmapSkeleton
+        //full bitmapSkeleton(图片b1有尾气，没修改)
         GetBitmapSkeleton.init = function () {
             GetBitmapSkeleton.bitmapSkeleton["f2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f2")));
             GetBitmapSkeleton.bitmapSkeleton["f3"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f3")));
             GetBitmapSkeleton.bitmapSkeleton["b1"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b1")));
             GetBitmapSkeleton.bitmapSkeleton["b2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b2")));
+            GetBitmapSkeleton.bitmapSkeleton["bullets"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("bullets")));
         };
         GetBitmapSkeleton.hitTest = function (obj1, name1, obj2, name2) {
             var bs1 = GetBitmapSkeleton.bitmapSkeleton[name1];
@@ -129,3 +130,4 @@ var physical;
     physical.GetBitmapSkeleton = GetBitmapSkeleton;
     GetBitmapSkeleton.prototype.__class__ = "physical.GetBitmapSkeleton";
 })(physical || (physical = {}));
+//# sourceMappingURL=ChangeBitmapOutline.js.map

@@ -12,7 +12,7 @@ var game;
             function MyFighter(texture, fireDelay, blood) {
                 _super.call(this, texture, blood);
                 this.fireDelay = fireDelay;
-                this.fireTimer = new egret.Timer(fireDelay);
+                this.fireTimer = new egret.Timer(fireDelay, 0); //子弹数量100
                 this.fireTimer.addEventListener(egret.TimerEvent.TIMER, this.createBullet, this);
             }
             var __egretProto__ = MyFighter.prototype;
@@ -28,6 +28,7 @@ var game;
                 theBullet.y = this.y - 25;
                 game.Airport.address.addChild(theBullet);
                 MyFighter.bullets.push(theBullet);
+                this.dispatchEventWith("bulletsCountChange");
             };
             MyFighter.moveBullets = function () {
                 var bullet;
@@ -41,8 +42,17 @@ var game;
                         i--;
                         bulletsCount--;
                     }
-                    bullet.y -= 12 * game.Airport.speed;
+                    else {
+                        bullet.y -= 12 * game.Airport.speed;
+                    }
                 }
+            };
+            __egretProto__.fillBullet = function (count) {
+                this.fireTimer.repeatCount += count;
+                this.fireTimer.start();
+            };
+            __egretProto__.getBulletsCount = function () {
+                return this.fireTimer.repeatCount - this.fireTimer.currentCount;
             };
             __egretProto__.getKindName = function () {
                 return MyFighter.kindName;
@@ -55,3 +65,4 @@ var game;
         MyFighter.prototype.__class__ = "game.fighter.MyFighter";
     })(fighter = game.fighter || (game.fighter = {}));
 })(game || (game = {}));
+//# sourceMappingURL=MyFighter.js.map

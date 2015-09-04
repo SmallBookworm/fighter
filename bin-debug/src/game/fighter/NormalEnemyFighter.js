@@ -42,7 +42,9 @@ var game;
                         i--;
                         bulletsCount--;
                     }
-                    bullet.y += 8 * game.Airport.speed;
+                    else {
+                        bullet.y += 10 * game.Airport.speed;
+                    }
                 }
             };
             __egretProto__.getKindName = function () {
@@ -56,3 +58,4 @@ var game;
         NormalEnemyFighter.prototype.__class__ = "game.fighter.NormalEnemyFighter";
     })(fighter = game.fighter || (game.fighter = {}));
 })(game || (game = {}));
+//# sourceMappingURL=NormalEnemyFighter.js.map

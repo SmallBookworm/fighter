@@ -35,19 +35,20 @@ module game.fighter {
             NormalEnemyFighter.bullets.push(theBullet);
         }
         
-        public static moveBullets():void{
+        public static moveBullets(): void {
             var bullet: Bullet;
             var bulletsCount: number = NormalEnemyFighter.bullets.length;
-            for(var i: number = 0;i < bulletsCount;i++){
+            for(var i: number = 0;i < bulletsCount;i++) {
                 bullet = NormalEnemyFighter.bullets[i];
-                if(bullet.y>Airport.address.stage.stageHeight){
+                if(bullet.y > Airport.address.stage.stageHeight) {
                     Airport.address.removeChild(bullet);
                     Bullet.reclaim(bullet);
                     NormalEnemyFighter.bullets.splice(i,1);
                     i--;
                     bulletsCount--;
-                } 
-                bullet.y += 8*Airport.speed;
+                } else {
+                    bullet.y += 10 * Airport.speed
+                }
             }
         }
         

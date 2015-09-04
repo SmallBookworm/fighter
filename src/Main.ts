@@ -138,8 +138,8 @@ class Main extends egret.DisplayObjectContainer {
     }
     private restart():void{
         this.gameContainer.removeEventListener("gameOver",this.restart,this);
+        this.removeChildren();
         this.addChild(this.guiLayer);
-        this.gameContainer= new game.GameContainer();
         this.guiLayer.addElement(this.startScreen);
         this.startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP,this.startGame,this);
     }

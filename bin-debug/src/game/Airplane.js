@@ -27,3 +27,4 @@ var game;
     game.Airplane = Airplane;
     Airplane.prototype.__class__ = "game.Airplane";
 })(game || (game = {}));
+//# sourceMappingURL=Airplane.js.map

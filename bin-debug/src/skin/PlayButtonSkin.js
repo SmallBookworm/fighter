@@ -26,3 +26,4 @@ var skin;
     skin.PlayButtonSkin = PlayButtonSkin;
     PlayButtonSkin.prototype.__class__ = "skin.PlayButtonSkin";
 })(skin || (skin = {}));
+//# sourceMappingURL=PlayButtonSkin.js.map

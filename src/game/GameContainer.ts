@@ -11,7 +11,6 @@ module game {
 		}
 		
 		private onAddToStage(event:egret.Event){
-		    this.removeEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
             this.createGameScene();
 		}
 		
@@ -21,7 +20,8 @@ module game {
         private levelText: egret.TextField;
         private levelName: egret.TextField;
         private icon: egret.Bitmap;
-        
+        private bulletsCountIcon: egret.Bitmap;
+        private bulletsCount: egret.TextField;
 		private createGameScene():void{
     		//放幕布 设置字体
             this.curtain = new egret.Shape();
@@ -58,18 +58,30 @@ module game {
             this.bloodBar.skinName = skin.bloodProgressBarSkin;
             this.bloodBar.value = 100;
             this.addChildAt(this.bloodBar,0);
+            //显示子弹数量
+            this.bulletsCount = new egret.TextField();
+            this.bulletsCount.textColor = 0x000000;
+            this.bulletsCount.text = "x100";
+            this.bulletsCount.x = this.stage.stageWidth - this.bulletsCount.width-30;
+            this.addChildAt(this.bulletsCount,0);
+            this.bulletsCountIcon = new egret.Bitmap(RES.getRes("bullet_png"));
+            this.bulletsCountIcon.x = this.bulletsCount.x-this.bulletsCountIcon.width-2;
+            this.addChildAt(this.bulletsCountIcon,0);
+            this.bulletsCount.y = (this.bulletsCountIcon.height - this.bulletsCount.height) / 2;
             //set level_1
             this.level = new level.Number();
             this.addChildAt(this.level,0);
             this.level.addEventListener("bloodBarChange",this.bloodBarChange,this);
             this.level.addEventListener("gameOver",this.gameOver,this);
+            this.level.addEventListener("bulletsCountChange",this.bulletsCountChange,this);
             //full bitmapskeleton
             physical.GetBitmapSkeleton.init();
             //touch to start 
             this.touchEnabled = true;
+            this.touchCount = 0;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touch,this);
 		}
-        private touchCount: number=0;
+        private touchCount: number;
 		private touch():void{
 		    switch(this.touchCount){
                 case 0: egret.Tween.get(this.levelText).to({ x: 135 },500,egret.Ease.cubicIn); break;
@@ -83,10 +95,10 @@ module game {
 		private gameStart():void{
             this.touchEnabled = false;
 		    this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.touch,this);
-            this.removeChildAt(2);
-            this.removeChildAt(2);
-            this.removeChildAt(2);
-            this.removeChildAt(2);
+            this.removeChildAt(4);
+            this.removeChildAt(4);
+            this.removeChildAt(4);
+            this.removeChildAt(4);
             this.level.gameStart();
 		}
 		
@@ -94,9 +106,26 @@ module game {
             this.bloodBar.value = event.data;
 		}
 		
-		private gameOver():void{
+		private bulletsCountChange(evt:egret.Event):void{
+            this.bulletsCount.text = "x" + evt.data;
+		}
+		private gameOver(evt:egret.Event):void{
             this.level.removeEventListener("bloodBarChange",this.bloodBarChange,this);
             this.level.removeEventListener("gameOver",this.gameOver,this);
+            this.level.removeEventListener("bulletsCountChange",this.bulletsCountChange,this);
+            this.removeChildren();
+            this.addChild(this.curtain);
+            this.levelText.text = "积分:";
+            this.levelText.x = 135;
+            this.addChild(this.levelText);
+            this.levelName.text = evt.data;
+            this.levelName.x = 225;
+            this.addChild(this.levelName);
+            this.touchEnabled = true;
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.score,this);
+		}
+		private score():void{
+            this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.score,this);
             this.removeChildren();
             this.dispatchEventWith("gameOver");
 		}

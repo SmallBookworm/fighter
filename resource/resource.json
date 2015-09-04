@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,b1,b2,f1,f2,level,f3,f4",
+		"keys":"bgImage,b1,b2,f1,f2,level,f3,f4,bullets,bullet_png",
 		"name":"preload"
 	}],
 	"resources":[
@@ -51,9 +51,9 @@
 		"url":"assets/button/play_normal.png"
 	},
 	{
-		"name":"backtround2_png",
+		"name":"background2_png",
 		"type":"image",
-		"url":"assets/backtround2.png"
+		"url":"assets/background2.png"
 	},
 	{
 		"name":"yl0_png",
@@ -81,5 +81,15 @@
 		"name":"level",
 		"type":"image",
 		"url":"assets/level1.png"
+	},
+	{
+		"name":"bullets",
+		"type":"image",
+		"url":"assets/bullets.png"
+	},
+	{
+		"name":"bullet_png",
+		"type":"image",
+		"url":"assets/bullet.png"
 	}]
 }

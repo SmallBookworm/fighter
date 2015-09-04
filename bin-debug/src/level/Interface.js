@@ -18,3 +18,4 @@ var level;
     level.Level = Level;
     Level.prototype.__class__ = "level.Level";
 })(level || (level = {}));
+//# sourceMappingURL=Interface.js.map

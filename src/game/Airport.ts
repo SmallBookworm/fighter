@@ -47,6 +47,7 @@ module game {
                     theFighter = new fighter.MyFighter(RES.getRes("f3"),fireDelay);    
                         }
                     theFighter.blood=10;//回血
+                    theFighter.fillBullet(100);
                     return theFighter;
                     }
                     

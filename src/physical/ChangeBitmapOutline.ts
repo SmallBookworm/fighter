@@ -6,12 +6,13 @@ module physical {
 	 */
 	export class GetBitmapSkeleton {
         public static bitmapSkeleton: Array<any> = [];
-        //full bitmapSkeleton
+        //full bitmapSkeleton(图片b1有尾气，没修改)
         public static init(){
             GetBitmapSkeleton.bitmapSkeleton["f2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f2")));
             GetBitmapSkeleton.bitmapSkeleton["f3"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("f3")));
             GetBitmapSkeleton.bitmapSkeleton["b1"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b1")));
             GetBitmapSkeleton.bitmapSkeleton["b2"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("b2")));
+            GetBitmapSkeleton.bitmapSkeleton["bullets"] = GetBitmapSkeleton.getBitmapSkeleton(new egret.Bitmap(RES.getRes("bullets")));                  
         }
         
         public static hitTest(obj1:egret.DisplayObject,name1:string,obj2:egret.DisplayObject,name2:string):Boolean{
