@@ -109,7 +109,6 @@ var Main = (function (_super) {
         this.guiLayer.addElement(this.startScreen);
         //监听按键
         this.startScreen.playButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
-        egret.Profiler.getInstance().run();
     };
     //开始游戏
     __egretProto__.startGame = function () {
