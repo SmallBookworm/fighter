@@ -37,10 +37,12 @@ class Main extends egret.DisplayObjectContainer {
 
     public constructor() {
         super();
+        egret_4399_h5api.initGame(100041783, "黑白飞机大战", 480, 800);
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
     private onAddToStage(event:egret.Event) {
+        egret_4399_h5api.moreGame();
         //inject the custom material parser
         //注入自定义的素材解析器
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
@@ -50,8 +52,7 @@ class Main extends egret.DisplayObjectContainer {
         egret.gui.Theme.load("resource/theme.thm");
         //设置加载进度界面
         //Config to load process interface
-        this.loadingView = new LoadingUI();
-        this.stage.addChild(this.loadingView);
+
 
         //初始化Resource资源加载库
         //initiate Resource loading library
@@ -77,7 +78,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
         if (event.groupName == "preload") {
-            this.stage.removeChild(this.loadingView);
+            
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
@@ -103,7 +104,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private onResourceProgress(event:RES.ResourceEvent):void {
         if (event.groupName == "preload") {
-            this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
+            egret_4399_h5api.progress(event.itemsLoaded / event.itemsTotal * 100);
         }
     }
 

@@ -3,10 +3,14 @@
 	"modules": [
 		{
 			"name": "core"
-		},
+		},       
 		{
 			"name": "version_old"
 		},
+        {
+        "name":"egret_4399_h5api",
+        "path":"../egret_4399_h5api"
+        },
 		{
 			"name": "res"
 		},

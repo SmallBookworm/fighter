@@ -30,10 +30,12 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.call(this);
+        egret_4399_h5api.initGame(100041783, "黑白飞机大战", 480, 800);
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
     var __egretProto__ = Main.prototype;
     __egretProto__.onAddToStage = function (event) {
+        egret_4399_h5api.moreGame();
         //inject the custom material parser
         //注入自定义的素材解析器
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
@@ -42,8 +44,6 @@ var Main = (function (_super) {
         egret.gui.Theme.load("resource/theme.thm");
         //设置加载进度界面
         //Config to load process interface
-        this.loadingView = new LoadingUI();
-        this.stage.addChild(this.loadingView);
         //初始化Resource资源加载库
         //initiate Resource loading library
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
@@ -66,7 +66,6 @@ var Main = (function (_super) {
      */
     __egretProto__.onResourceLoadComplete = function (event) {
         if (event.groupName == "preload") {
-            this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
@@ -90,7 +89,7 @@ var Main = (function (_super) {
      */
     __egretProto__.onResourceProgress = function (event) {
         if (event.groupName == "preload") {
-            this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
+            egret_4399_h5api.progress(event.itemsLoaded / event.itemsTotal * 100);
         }
     };
     /**

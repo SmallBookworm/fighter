@@ -115,6 +115,7 @@ var egret_file_list = [
 	"core/egret/context/audio/QQAudio.js",
 	"core/egret/context/Html5Capatibility.js",
 	"core/extension/oldVersion/NativeVersionController.js",
+	"egret_4399_h5api/egret_4399_h5api.js",
 	"core/extension/resource/events/ResourceEvent.js",
 	"core/extension/resource/core/ResourceItem.js",
 	"core/extension/resource/core/ResourceConfig.js",

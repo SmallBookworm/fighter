@@ -109,16 +109,26 @@ module game {
 		private bulletsCountChange(evt:egret.Event):void{
             this.bulletsCount.text = "x" + evt.data;
 		}
-		private gameOver(evt:egret.Event):void{
+        private gameOver(evt: egret.Event): void {
             this.level.removeEventListener("bloodBarChange",this.bloodBarChange,this);
             this.level.removeEventListener("gameOver",this.gameOver,this);
             this.level.removeEventListener("bulletsCountChange",this.bulletsCountChange,this);
             this.removeChildren();
             this.addChild(this.curtain);
+            var obj;
+            egret_4399_h5api.submitScore(evt.data,function() { },this);
+            egret_4399_h5api.getRank(function(obj) {
+                if(obj.code == 10000) {
+                    var data = obj.data;
+                    for(var i = 0;i < data.length;i++) {
+                        this.levelText.text += ("积分:" + data[i].score + ",排名:" + data[i].rank);
+                }
+            } else{
+                console.log("获取失败");
+            }},this); 
             this.levelText.text = "积分:";
             this.levelText.x = 135;
             this.addChild(this.levelText);
-            this.levelName.text = evt.data;
             this.levelName.x = 225;
             this.addChild(this.levelName);
             this.touchEnabled = true;
